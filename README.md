@@ -12,14 +12,14 @@ node cli.js
 
 This tool reaches exactly one host:
 
-- `httpbin.org`
+- `example.com`
 
 ## Required secret
 
 This tool requires one user-provided secret, supplied as an environment variable:
 
 - `DEMO_API_KEY` — required by the tool. It is validated locally at startup (the tool exits if it
-  is missing). The secret is NEVER transmitted over the network; the request to `httpbin.org` is
+  is missing). The secret is NEVER transmitted over the network; the request to `example.com` is
   unauthenticated. (This is a safe demo of secret injection + declared-host egress.)
 
 The secret is read from the environment at runtime; it is never committed to the repo.

@@ -2,7 +2,7 @@
 // weavin-secret-egress-demo — prove a user-provided secret is injected, then reach a declared host.
 // Zero dependencies (Node 22 built-in global fetch).
 // Required env var (user secret): DEMO_API_KEY
-// Egress host: httpbin.org
+// Egress host: example.com   (IANA reserved, always-up, fast — reliable for a smoke test)
 //
 // SECURITY: the secret is validated LOCALLY (presence only) and is NEVER transmitted off the
 // sandbox — the network request to the declared host is UNauthenticated. This proves SP5b-4's
@@ -16,7 +16,7 @@ const TOKEN = process.env.DEMO_API_KEY;
   }
   try {
     // Unauthenticated egress to the single declared host. No secret is sent.
-    const res = await fetch('https://httpbin.org/get', { signal: AbortSignal.timeout(15000) });
+    const res = await fetch('https://example.com/', { signal: AbortSignal.timeout(30000) });
     process.stdout.write(JSON.stringify({ ok: res.ok, status: res.status, secretPresent: true }) + '\n');
     process.exit(res.ok ? 0 : 1);
   } catch (err) {
